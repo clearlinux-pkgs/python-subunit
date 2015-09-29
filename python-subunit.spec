@@ -4,7 +4,7 @@
 #
 Name     : python-subunit
 Version  : 1.1.0
-Release  : 11
+Release  : 12
 URL      : https://pypi.python.org/packages/source/p/python-subunit/python-subunit-1.1.0.tar.gz
 Source0  : https://pypi.python.org/packages/source/p/python-subunit/python-subunit-1.1.0.tar.gz
 Summary  : Python implementation of subunit test streaming protocol
