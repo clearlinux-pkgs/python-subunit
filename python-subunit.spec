@@ -6,7 +6,7 @@
 #
 Name     : python-subunit
 Version  : 1.2.0
-Release  : 21
+Release  : 22
 URL      : https://pypi.python.org/packages/source/p/python-subunit/python-subunit-1.2.0.tar.gz
 Source0  : https://pypi.python.org/packages/source/p/python-subunit/python-subunit-1.2.0.tar.gz
 Source99 : https://pypi.python.org/packages/source/p/python-subunit/python-subunit-1.2.0.tar.gz.asc
@@ -15,11 +15,19 @@ Group    : Development/Tools
 License  : Apache-2.0
 Requires: python-subunit-bin
 Requires: python-subunit-python
+Requires: docutils
+Requires: extras
+Requires: fixtures
+Requires: hypothesis
+Requires: testscenarios
+Requires: testtools
+BuildRequires : extras
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
+BuildRequires : testtools
 
 %description
 subunit: A streaming protocol for test results
@@ -49,12 +57,12 @@ python components for the python-subunit package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1484569428
+export SOURCE_DATE_EPOCH=1487876437
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1484569428
+export SOURCE_DATE_EPOCH=1487876437
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
