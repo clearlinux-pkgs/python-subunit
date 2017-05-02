@@ -6,7 +6,7 @@
 #
 Name     : python-subunit
 Version  : 1.2.0
-Release  : 22
+Release  : 23
 URL      : https://pypi.python.org/packages/source/p/python-subunit/python-subunit-1.2.0.tar.gz
 Source0  : https://pypi.python.org/packages/source/p/python-subunit/python-subunit-1.2.0.tar.gz
 Source99 : https://pypi.python.org/packages/source/p/python-subunit/python-subunit-1.2.0.tar.gz.asc
