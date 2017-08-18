@@ -6,9 +6,9 @@
 #
 Name     : python-subunit
 Version  : 1.2.0
-Release  : 23
-URL      : https://pypi.python.org/packages/source/p/python-subunit/python-subunit-1.2.0.tar.gz
-Source0  : https://pypi.python.org/packages/source/p/python-subunit/python-subunit-1.2.0.tar.gz
+Release  : 24
+URL      : http://pypi.debian.net/python-subunit/python-subunit-1.2.0.tar.gz
+Source0  : http://pypi.debian.net/python-subunit/python-subunit-1.2.0.tar.gz
 Source99 : https://pypi.python.org/packages/source/p/python-subunit/python-subunit-1.2.0.tar.gz.asc
 Summary  : Python implementation of subunit test streaming protocol
 Group    : Development/Tools
@@ -56,16 +56,22 @@ python components for the python-subunit package.
 %setup -q -n python-subunit-1.2.0
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1487876437
+export SOURCE_DATE_EPOCH=1503076563
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1487876437
+export SOURCE_DATE_EPOCH=1503076563
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+echo ----[ mark ]----
+cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
+echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
@@ -88,4 +94,5 @@ python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python*/*
+/usr/lib/python2*/*
+/usr/lib/python3*/*

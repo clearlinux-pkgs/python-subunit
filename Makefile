@@ -1,5 +1,5 @@
 PKG_NAME := python-subunit
-URL := https://pypi.python.org/packages/source/p/python-subunit/python-subunit-1.2.0.tar.gz
+URL := http://pypi.debian.net/python-subunit/python-subunit-1.2.0.tar.gz
 
 
 include ../common/Makefile.common
