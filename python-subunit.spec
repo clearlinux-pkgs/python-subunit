@@ -6,14 +6,15 @@
 #
 Name     : python-subunit
 Version  : 1.2.0
-Release  : 24
+Release  : 25
 URL      : http://pypi.debian.net/python-subunit/python-subunit-1.2.0.tar.gz
 Source0  : http://pypi.debian.net/python-subunit/python-subunit-1.2.0.tar.gz
-Source99 : https://pypi.python.org/packages/source/p/python-subunit/python-subunit-1.2.0.tar.gz.asc
+Source99 : http://pypi.debian.net/python-subunit/python-subunit-1.2.0.tar.gz.asc
 Summary  : Python implementation of subunit test streaming protocol
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: python-subunit-bin
+Requires: python-subunit-legacypython
 Requires: python-subunit-python
 Requires: docutils
 Requires: extras
@@ -44,9 +45,18 @@ Group: Binaries
 bin components for the python-subunit package.
 
 
+%package legacypython
+Summary: legacypython components for the python-subunit package.
+Group: Default
+
+%description legacypython
+legacypython components for the python-subunit package.
+
+
 %package python
 Summary: python components for the python-subunit package.
 Group: Default
+Requires: python-subunit-legacypython
 
 %description python
 python components for the python-subunit package.
@@ -60,12 +70,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1503076563
+export SOURCE_DATE_EPOCH=1505058718
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1503076563
+export SOURCE_DATE_EPOCH=1505058718
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -92,7 +102,10 @@ echo ----[ mark ]----
 /usr/bin/subunit2pyunit
 /usr/bin/tap2subunit
 
-%files python
+%files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files python
+%defattr(-,root,root,-)
 /usr/lib/python3*/*
