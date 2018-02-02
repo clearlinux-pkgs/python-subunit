@@ -6,7 +6,7 @@
 #
 Name     : python-subunit
 Version  : 1.2.0
-Release  : 29
+Release  : 30
 URL      : http://pypi.debian.net/python-subunit/python-subunit-1.2.0.tar.gz
 Source0  : http://pypi.debian.net/python-subunit/python-subunit-1.2.0.tar.gz
 Source99 : http://pypi.debian.net/python-subunit/python-subunit-1.2.0.tar.gz.asc
