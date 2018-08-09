@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x597240FE94E60165 (rbtcollins@hp.com)
 #
 Name     : python-subunit
-Version  : 1.2.0
-Release  : 39
-URL      : http://pypi.debian.net/python-subunit/python-subunit-1.2.0.tar.gz
-Source0  : http://pypi.debian.net/python-subunit/python-subunit-1.2.0.tar.gz
-Source99 : http://pypi.debian.net/python-subunit/python-subunit-1.2.0.tar.gz.asc
+Version  : 1.3.0
+Release  : 40
+URL      : https://files.pythonhosted.org/packages/8d/5c/2f6c75495eac11ac3a58d924ab7532b77246c0cce8cddcef66783b38631b/python-subunit-1.3.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/8d/5c/2f6c75495eac11ac3a58d924ab7532b77246c0cce8cddcef66783b38631b/python-subunit-1.3.0.tar.gz
+Source99 : https://files.pythonhosted.org/packages/8d/5c/2f6c75495eac11ac3a58d924ab7532b77246c0cce8cddcef66783b38631b/python-subunit-1.3.0.tar.gz.asc
 Summary  : Python implementation of subunit test streaming protocol
 Group    : Development/Tools
 License  : Apache-2.0
@@ -22,12 +22,8 @@ Requires: fixtures
 Requires: hypothesis
 Requires: testscenarios
 Requires: testtools
+BuildRequires : buildreq-distutils3
 BuildRequires : extras
-BuildRequires : pbr
-BuildRequires : pip
-
-BuildRequires : python3-dev
-BuildRequires : setuptools
 BuildRequires : testtools
 
 %description
@@ -64,14 +60,14 @@ python3 components for the python-subunit package.
 
 
 %prep
-%setup -q -n python-subunit-1.2.0
+%setup -q -n python-subunit-1.3.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1523299791
+export SOURCE_DATE_EPOCH=1533783314
 python3 setup.py build -b py3
 
 %install
@@ -95,6 +91,7 @@ echo ----[ mark ]----
 /usr/bin/subunit-stats
 /usr/bin/subunit-tags
 /usr/bin/subunit2csv
+/usr/bin/subunit2disk
 /usr/bin/subunit2gtk
 /usr/bin/subunit2junitxml
 /usr/bin/subunit2pyunit
