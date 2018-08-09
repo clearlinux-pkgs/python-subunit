@@ -6,7 +6,7 @@
 #
 Name     : python-subunit
 Version  : 1.3.0
-Release  : 40
+Release  : 41
 URL      : https://files.pythonhosted.org/packages/8d/5c/2f6c75495eac11ac3a58d924ab7532b77246c0cce8cddcef66783b38631b/python-subunit-1.3.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/8d/5c/2f6c75495eac11ac3a58d924ab7532b77246c0cce8cddcef66783b38631b/python-subunit-1.3.0.tar.gz
 Source99 : https://files.pythonhosted.org/packages/8d/5c/2f6c75495eac11ac3a58d924ab7532b77246c0cce8cddcef66783b38631b/python-subunit-1.3.0.tar.gz.asc
@@ -67,7 +67,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1533783314
+export SOURCE_DATE_EPOCH=1533784838
 python3 setup.py build -b py3
 
 %install
@@ -82,6 +82,7 @@ echo ----[ mark ]----
 
 %files bin
 %defattr(-,root,root,-)
+%exclude /usr/bin/subunit2disk
 /usr/bin/subunit-1to2
 /usr/bin/subunit-2to1
 /usr/bin/subunit-filter
@@ -91,7 +92,6 @@ echo ----[ mark ]----
 /usr/bin/subunit-stats
 /usr/bin/subunit-tags
 /usr/bin/subunit2csv
-/usr/bin/subunit2disk
 /usr/bin/subunit2gtk
 /usr/bin/subunit2junitxml
 /usr/bin/subunit2pyunit
