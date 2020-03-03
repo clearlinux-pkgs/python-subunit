@@ -6,21 +6,17 @@
 #
 Name     : python-subunit
 Version  : 1.3.0
-Release  : 47
+Release  : 48
 URL      : https://files.pythonhosted.org/packages/8d/5c/2f6c75495eac11ac3a58d924ab7532b77246c0cce8cddcef66783b38631b/python-subunit-1.3.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/8d/5c/2f6c75495eac11ac3a58d924ab7532b77246c0cce8cddcef66783b38631b/python-subunit-1.3.0.tar.gz
-Source99 : https://files.pythonhosted.org/packages/8d/5c/2f6c75495eac11ac3a58d924ab7532b77246c0cce8cddcef66783b38631b/python-subunit-1.3.0.tar.gz.asc
+Source1  : https://files.pythonhosted.org/packages/8d/5c/2f6c75495eac11ac3a58d924ab7532b77246c0cce8cddcef66783b38631b/python-subunit-1.3.0.tar.gz.asc
 Summary  : Python implementation of subunit test streaming protocol
 Group    : Development/Tools
 License  : Apache-2.0
-Requires: python-subunit-bin
-Requires: python-subunit-python3
-Requires: python-subunit-python
-Requires: docutils
+Requires: python-subunit-bin = %{version}-%{release}
+Requires: python-subunit-python = %{version}-%{release}
+Requires: python-subunit-python3 = %{version}-%{release}
 Requires: extras
-Requires: fixtures
-Requires: hypothesis
-Requires: testscenarios
 Requires: testtools
 BuildRequires : buildreq-distutils3
 BuildRequires : extras
@@ -44,7 +40,7 @@ bin components for the python-subunit package.
 %package python
 Summary: python components for the python-subunit package.
 Group: Default
-Requires: python-subunit-python3
+Requires: python-subunit-python3 = %{version}-%{release}
 
 %description python
 python components for the python-subunit package.
@@ -54,6 +50,7 @@ python components for the python-subunit package.
 Summary: python3 components for the python-subunit package.
 Group: Default
 Requires: python3-core
+Provides: pypi(python-subunit)
 
 %description python3
 python3 components for the python-subunit package.
@@ -61,28 +58,38 @@ python3 components for the python-subunit package.
 
 %prep
 %setup -q -n python-subunit-1.3.0
+cd %{_builddir}/python-subunit-1.3.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1533784838
-python3 setup.py build -b py3
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1583215023
+# -Werror is for werrorists
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
+export MAKEFLAGS=%{?_smp_mflags}
+python3 setup.py build
 
 %install
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
-python3 -tt setup.py build -b py3 install --root=%{buildroot}
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
+## Remove excluded files
+rm -f %{buildroot}/usr/bin/subunit2disk
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
-%exclude /usr/bin/subunit2disk
 /usr/bin/subunit-1to2
 /usr/bin/subunit-2to1
 /usr/bin/subunit-filter
