@@ -6,7 +6,7 @@
 #
 Name     : python-subunit
 Version  : 1.3.0
-Release  : 48
+Release  : 49
 URL      : https://files.pythonhosted.org/packages/8d/5c/2f6c75495eac11ac3a58d924ab7532b77246c0cce8cddcef66783b38631b/python-subunit-1.3.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/8d/5c/2f6c75495eac11ac3a58d924ab7532b77246c0cce8cddcef66783b38631b/python-subunit-1.3.0.tar.gz
 Source1  : https://files.pythonhosted.org/packages/8d/5c/2f6c75495eac11ac3a58d924ab7532b77246c0cce8cddcef66783b38631b/python-subunit-1.3.0.tar.gz.asc
@@ -50,7 +50,9 @@ python components for the python-subunit package.
 Summary: python3 components for the python-subunit package.
 Group: Default
 Requires: python3-core
-Provides: pypi(python-subunit)
+Provides: pypi(python_subunit)
+Requires: pypi(extras)
+Requires: pypi(testtools)
 
 %description python3
 python3 components for the python-subunit package.
@@ -65,8 +67,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583215023
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1583539770
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
